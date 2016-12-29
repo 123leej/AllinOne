@@ -5,6 +5,7 @@ Django==1.10.2
 dropbox==6.9.0
 enum34==1.1.6
 google-api-python-client==1.5.5
+gunicorn==19.6.0
 httplib2==0.9.2
 idna==2.1
 ipaddress==1.0.17
