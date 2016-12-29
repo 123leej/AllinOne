@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block notauth %}
+    <div class="login secondary callout medium" id="loginDiv">
+      {% if error %}<div class="alert callout small"><strong>Error:</strong> Check your ID and PW </div>{% endif %}
+
+      <form action="{% url 'login' %}" id="Form" method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <h2>LOGIN</h2>
+        <div class="row">
+          <div class="login_form" id="login_formDiv">
+            <div class="user" id="userDiv">
+              <input class="username" id="username" placeholder="ID" type="text" name="username">
+              <input class="password" id="password" placeholder="PW" type="password" name="password">
+            </div>
+            <div class="loginButton" id="submitDiv">
+              <input class="secondary button" id="loginSubmit" type="submit" value="Login" style="height: 95px;">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+{% endblock %}

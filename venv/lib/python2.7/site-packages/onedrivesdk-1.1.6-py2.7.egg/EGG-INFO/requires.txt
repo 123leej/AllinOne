@@ -1,0 +1,7 @@
+requests>=2.6.1
+
+[samples]
+Pillow
+
+[tests]
+Mock
