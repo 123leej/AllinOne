@@ -1,1 +1,1 @@
-gunicorn your_wsgi.wsgi --log-file -
+web: gunicorn AllinOne.wsgi --log-file -
