@@ -1,6 +1,7 @@
 cffi==1.8.3
 cryptography==1.5.2
 dj-database-url==0.4.1
+dj-static==0.0.6
 Django==1.10.2
 dropbox==6.9.0
 enum34==1.1.6
@@ -16,10 +17,10 @@ pyasn1==0.1.9
 pyasn1-modules==0.0.8
 pycparser==2.16
 pysftp==0.2.9
-psycopg2==2.4.5
 requests==2.11.1
 rsa==3.4.2
 six==1.10.0
+static3==0.7.0
 typing==3.5.2.2
 uritemplate==3.0.0
 urllib3==1.18
