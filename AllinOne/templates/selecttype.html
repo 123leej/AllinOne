@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block auth %}
+    <div align="center">
+        <h2>Select type</h2>
+        {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
+        <a href="{% url 'dropbox_auth_start' %}"><img src="{% static 'img/dropboxlogo.png' %}" style="height:50px; border:1px;"></a>
+        <a href="{% url 'ggdrive_auth_start' %}"><img src="{% static 'img/googledrivelogo.png' %}" style="height:50px; border:1px;"></a>
+        <a href="{% url 'onedrive_auth_start' %}"><img src="{% static 'img/onedrivelogo.png' %}" style="height:50px; border:1px;"></a>
+        <a href="{% url 'ftp_auth' %}"><img src="{% static 'img/ftplogo.jpg' %}" style="height:50px; border:1px;"></a>
+    </div>
+{% endblock %}

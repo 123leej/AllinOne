@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<HTML>
+  <head>
+    <meta charset="utf-8">
+    <title>All in One Cloud : 스마트 클라우드 스토리지 통합 관리 서비스</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script language="text/javascript">
+      function CheckboxToHidden(f,ele) {
+          var ele_h;
+          var val;
+
+          if (typeof(ele.length) != "undefined") {// checkbox가 배열일경우
+              for (var i = 0; i < ele.length; i++) {
+                  // hidden객체생성, 이름은 checkbox와 같게한다.
+                  ele_h = document.createElement("input");
+                  ele_h.setAttribute("type","hidden");
+                  ele_h.setAttribute("name",ele[i].name);
+                  ele[i].checked ? val = ele[i].value : val = "";
+                  ele_h.setAttribute("value",val);
+                  f.appendChild(ele_h);
+
+                  // 기존 checkbox의 이름을 이름_dummy로 변경한후 checked = false해준다.
+                  ele[i].checked = false;
+                  ele[i].setAttribute("name",ele[i].name + "_dummy");
+              }
+          } else {// checkbox가 한개
+                  ele_h = document.createElement("input");
+                  ele_h.setAttribute("type","hidden");
+                  ele_h.setAttribute("name",ele.name);
+                  ele.checked ? val = ele.value : val = "";
+                  ele_h.setAttribute("value",val);
+                  f.appendChild(ele_h);
+
+                  ele.checked = false;
+                  ele.setAttribute("name",ele.name + "_dummy");
+          }
+      }
+
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#allCheck").click(function(){
+                if($("#allCheck").prop("checked")) {
+                    $("input[type=checkbox]").prop("checked",true);
+                } else {
+                    $("input[type=checkbox]").prop("checked",false);
+                }
+            })
+        })
+    </script>
+    <script>
+        $( function() {
+          $( "#accordion" ).accordion();
+        } );
+    </script>
+    <style type="text/css">
+      .table{
+          width: 840px;
+          max-width: 840px;
+          max-height: 700px;
+          border-collapse:collapse;
+      }
+      .table-wrap{
+          max-height: 600px;
+          max-width:860px;
+          width:860px;
+          overflow-y:auto;
+          overflow-x:hidden;
+      }
+
+      .table-dalam{
+          max-height:300px;
+          width:840px;
+          max-width:840px;
+          border-collapse:collapse;
+          table-layout:fixed;
+      }
+
+      .td-nya{
+          border-left:1px solid white;
+          border-right:1px solid grey;
+          border-bottom:1px solid grey;
+      }
+    </style>
+
+  </head>
+  <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+    <div>
+      <div class="row" style="width:1182px; margin: 10px 20px 10px 20px;">
+        <div style="float:left; padding:30px 0px 0px 20px;">
+          <h1><a href="/?name=home&location=" style="color: #000000;">AllinOne Cloud</a></h1>
+        </div>
+        {% if user_info %}
+          <div class="row" id="userInfoDiv" style="width: 450px; float: right; padding-top: 50px;">
+            <div style="float: left; margin: 0px 10px 0px 10px;">
+              <div class="success progress" style="width: 300px;">
+                <div class="progress-meter" style="width: {{ totalUsed.percent }}%"></div>
+              </div>
+              <div style="width:300px; text-align: right;">
+                <p><span style="font-size: 8pt;">{{ totalUsed.used }} / {{ totalUsed.allocated }}</span></p>
+              </div>
+            </div>
+            <div style="float: left; margin: 0px 10px 0px 10px;">
+              <h6>Hello {{user_info}}</h6>
+              <a href="{% url 'logout' %}">LOGOUT</a>
+            </div>
+          </div>
+        {% else%}
+          <div class="row" id="signinDiv" style="width: 450px; float: right; padding-top: 50px; text-align:right;">
+            <a href="{% url 'login' %}">LOGIN</a>
+            <a href="{% url 'signup' %}">SIGNUP</a>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if user_info %}
+      <div class="body row callout" style="width: 1182px; height: 850px; float:left; margin:20px; padding:0px;">
+        <div class="leftDiv" id="leftDivId" style="float: left; width:220px; margin: 30px 0 0 20px;">
+          <ul class="accordion" id="accordion" data-accordion>
+            <li class="accordion-item is-active" data-accordion-item>
+              <div class="accordion-title" style="padding: 10px 16px 10px 10px; font-size:13pt; height:42px;">
+                <img src="{% static 'img/plus.png' %}" style="height: 20px; float: left; margin-right:2px;"/>
+                <a href="{% url 'selecttype' %}" style="float:left;">Add New Account</a>
+              </div>
+            </li>
+            <li class="accordion-item is-active" data-accordion-item>
+              <div class="accordion-title" style="padding: 10px 16px 10px 10px; font-size:15pt; height:42px;">
+                <img src="{% static 'img/home.png' %}" style="height: 20px; float: left; margin-right:2px;"/>
+                <a href="/?name=home&location=" style="float:left;">Home</a>
+              </div>
+            </li>
+            {% if accountList %}
+              {% for account in accountList %}
+                <li class="accordion-item" data-accordion-item>
+                  <div class="accordion-title is-active" style="padding: 10px 16px 10px 10px; font-size:15pt; height:42px;">
+                    <img src="/static/img/{{account.api_type}}.png" style="height: 20px; float: left; margin-right:2px;"/>
+                    <a href="/?name={{ account.api_name }}&location=" style="float:left;">{{ account.api_name }}</a>
+                    <a href="api_unlink/?name={{account.api_name}}" style="float:right;">-</a>
+                  </div>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+
+        <div id="rightDivId" class="rightDiv" style="min-width:940px; max-width: 940px; height:650px; float:left; padding: 30px;">
+        {% block auth %}
+          {% if name == 'home'%}
+            <h3>HOME</h3>
+            {% for used in usedList %}
+              <div class="callout priamry row small" style="width: 220px; height: 150px; margin: 10px; float:left;">
+                <h5>{{ used.api_type }}-<br/>{{ used.api_name }}</h5>
+                <div class="success progress" style="width: 200px;">
+                  <div class="progress-meter" style="width: {{ used.percent }}%"></div>
+                </div>
+                <div>
+                  <p><span style="font-size: 8pt;">{{ used.used }} / {{ used.allocated }}</span></p>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="top-bar" style="height: 55px;">
+              <div class="pathDiv tob-bar-left" id="pathDivId" style="float:left; padding-left: 20px; padding-top: 10px;">
+                <nav class="menu" aria-label="You are here:" role="navigation">
+                  <ul class="breadcrumbs">
+                    <li><a href="?name=home&location=">Home</a></li>
+                    <li><a href="?name={{ name }}&location=">{{ name }}</a></li>
+                    {%for loc in path %}
+                      <li><a href="?name={{ name }}&location={{ loc.full_path }}">{{ loc.path }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </nav>
+              </div>
+              <div class="searchDiv tob-bar-right" id="searchDivId" style="float: right:">
+                <form action="/search" method="get" style="float: right;">
+                  {% csrf_token %}
+                  <input type="hidden" name="location" value="{{location}}">
+                  <input type="hidden" name="name" value={{name}}>
+                  <input type="text" name="search_name" placeholder="search" style="width: 200px; float: left;">
+                  <input class="secondary button" type="submit" value="search" style="float: left;">
+                </form>
+              </div>
+            </div>
+
+            <form action="/filecheck">
+              {% csrf_token%}
+              <input type="hidden" name="location" value="{{location}}">
+              <input type="hidden" name="name" value={{name}}>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th width="60">&nbsp;&nbsp;<input type="checkbox" id="allCheck"></th>
+                    <th width="390">Name</th>
+                    <th width="30"></th>
+                    <th width="160">Size</th>
+                    <th width="200">Modified Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5">
+                      <div class="table-wrap">
+                        <table class="table-dalam hover">
+                          <tbody>
+                            {% if fileList %}
+                              {% for file in fileList %}
+                              <tr class="task">
+                                <td width="50"><input type="checkbox" class="check" name="fileChecked" value="{{ file.name }}"></td>
+                                <td width="400">
+                                  {% if file.type == 'folder' %}
+                                    <img src="{% static 'img/folder.png' %}" style="height: 25px;">&nbsp;<a href="?name={{ name }}&location={{location}}/{{ file.name }}">{{ file.name }}</a>
+                                  {% else%}
+                                    <img src="{% static 'img/file.png' %}" style="height: 25px;">&nbsp;<a href="#">{{ file.name }}</a>
+                                  {% endif %}
+                                </td>
+                                <td width="50">
+                                  <p><a class="preview_start" data-open="{{ file.index }}">+</a></p>
+                                  <div class="reveal" id="{{ file.index }}" data-reveal>
+                                    {% if file.type == 'folder' %}
+                                      <img src="{% static 'img/folder' %}">
+                                    {% else %}
+                                      <img src="{% static 'img/folder' %}">
+                                    {% endif %}
+                                    <p class="lead">File : {{ file.name }}</p>
+                                    <hr>
+                                    <p>size : {{ file.size }}</p>
+                                    <p>path : {{ file.path }}</p>
+                                    <p>last modified date : {{ file.modified_date }}</p>
+                                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                </td>
+                                <td width="160">{{ file.size }}</td>
+                                <td width="200">{{ file.modified_date }}</td>
+                              </tr>
+                              <nav class="context-menu">
+                                <ul class="context-menu__items">
+                                  <li class="context-menu__item">
+                                    <input type="submit" class="button" name="type" value="download" style="width:100px;">
+                                  </li>
+                                  <li class="context-menu__item">
+                                    <input type="submit" class="button" name="type" value="newfolder" style="width: 100px;">
+                                  </li>
+                                  <li class="context-menu__item">
+                                    <input type="submit" class="button" name="type" value="rename" style="width: 100px;">
+                                  </li>
+                                  <li class="context-menu__item">
+
+                                  </li>
+                                  <li class="context-menu__item">
+                                    <input type="submit" class="button" name="type" value="delete" style="width: 100px;">
+                                  </li>
+                                </ul>
+                              </nav>
+                              {% endfor %}
+                            {% endif %}
+                          </tbody>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+            <div class="uploadDiv" id="uploadDivId" style="width:500px; float:left;">
+              <form action='/upload' method="get" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="filepath" id="filepath" style="width: 200px; float:left;">
+                <input type="hidden" name="location" value="{{location}}">
+                <input type="hidden" name="name" value="{{name}}">
+                <input type="submit" name="upload" value="UPLOAD" style="float: left;">
+              </form>
+            </div>
+            <p><a class="preview_start" data-open="uploadModal">file detach upload</a></p>
+            <div class="reveal" id="uploadModal" data-reveal>
+              <form action="/detach_upload">
+                {% csrf_token %}
+                {% for account in accountList %}
+                <div style="width: 300px;">
+                  <img src="/static/img/{{account.api_type}}.png" style="height: 30px; float: left; margin-right:2px;"/>
+                  <p style="float:left;">{{ account.api_name }}</p>
+                  <input type="checkbox" class="check" name="target_api" value="{{ account.api_name }}">
+                </div>
+                <br/>
+                {% endfor %}
+                <input type="file" name="filepath" style="width: 200px; float:left;">
+                <input type="hidden" name="location" value="{{location}}">
+                <input type="hidden" name="name" value="{{name}}">
+                <input type="submit" name="upload" value="UPLOAD" style="float: left;">
+              </form>
+              <button class="close-button" data-close aria-label="Close modal" type="button" style="float:right;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+
+          {% endif %}
+        {% endblock %}
+        </div>
+      {% else %}
+        {% block notauth %}
+        {% endblock %}
+      {% endif %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="{% static 'js/vendor/jquery.js' %}"></script>
+    <script src="{% static 'js/vendor/what-input.js' %}"></script>
+    <script src="{% static 'js/vendor/foundation.js' %}"></script>
+    <script src="{% static 'js/vendor/foundation.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</HTML>
