@@ -20,14 +20,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/All_in_one/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="1697" column="25" selection-start-line="1697" selection-start-column="25" selection-end-line="1697" selection-end-column="25" />
+            <state relative-caret-position="396">
+              <caret line="1708" column="38" selection-start-line="1708" selection-start-column="38" selection-end-line="1708" selection-end-column="38" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AllinOne/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,7 +95,6 @@
         <option value="$PROJECT_DIR$/All_in_one/static/js/app.js" />
         <option value="$PROJECT_DIR$/All_in_one/static/css/app.css" />
         <option value="$PROJECT_DIR$/All_in_one/templates/addaccount.html" />
-        <option value="$PROJECT_DIR$/AllinOne/settings.py" />
         <option value="$PROJECT_DIR$/All_in_one/templates/modify.html" />
         <option value="$PROJECT_DIR$/All_in_one/static/css/style.css" />
         <option value="$PROJECT_DIR$/All_in_one/templates/selecttype.html" />
@@ -100,11 +109,11 @@
         <option value="$PROJECT_DIR$/All_in_one/templates/ftpform.html" />
         <option value="$PROJECT_DIR$/All_in_one/templates/main.html" />
         <option value="$PROJECT_DIR$/All_in_one/views.py" />
+        <option value="$PROJECT_DIR$/AllinOne/settings.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="107" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="829" />
@@ -153,7 +162,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -202,7 +211,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -427,7 +436,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="107" y="23" width="1440" height="829" extended-state="1" />
+    <frame x="0" y="23" width="1440" height="829" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14023961" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -474,13 +483,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/All_in_one/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4032">
-          <caret line="224" column="92" selection-start-line="224" selection-start-column="92" selection-end-line="224" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/templates/main.html" />
     <entry file="file://$PROJECT_DIR$/AllinOne/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -498,13 +501,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4590">
-          <caret line="255" column="42" selection-start-line="255" selection-start-column="42" selection-end-line="255" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/templates/main.html" />
     <entry file="file://$PROJECT_DIR$/AllinOne/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -536,20 +533,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="85" column="38" selection-start-line="85" selection-start-column="38" selection-end-line="85" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/templates/main.html" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/main.js" />
     <entry file="file://$PROJECT_DIR$/All_in_one/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -561,132 +546,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/All_in_one/tt.py" />
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/vendor/foundation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46116">
-          <caret line="2562" column="13" selection-start-line="2562" selection-start-column="13" selection-end-line="2562" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/dropbox.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/dropboxlogo.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/file.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/folder.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/ftp.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/ftplogo.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/googledrive.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/home.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/onedrive.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/onedrivelogo.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/plus.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/templates/selecttype.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="44" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="85" column="38" selection-start-line="85" selection-start-column="38" selection-end-line="85" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/css/foundation.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/css/foundation.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="1864" column="0" selection-start-line="1864" selection-start-column="0" selection-end-line="1864" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/app.js" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/vendor/foundation.js" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/dropbox.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/dropboxlogo.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/file.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/folder.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/ftp.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/ftplogo.jpg" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/googledrive.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/home.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/onedrive.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/onedrivelogo.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/img/plus.png" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/templates/selecttype.html" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/main.js" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/css/foundation.min.css" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/css/foundation.css" />
     <entry file="file://$PROJECT_DIR$/All_in_one/tt.py" />
-    <entry file="file://$PROJECT_DIR$/All_in_one/templates/search_result.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="26" column="75" selection-start-line="26" selection-start-column="75" selection-end-line="26" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/vendor/foundation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1866">
-          <caret line="6438" column="36" selection-start-line="6438" selection-start-column="27" selection-end-line="6438" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/templates/search_result.html" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/vendor/foundation.js" />
+    <entry file="file://$PROJECT_DIR$/All_in_one/static/js/app.js" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -694,13 +575,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/templates/ftpform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/templates/ftpform.html" />
     <entry file="file://$PROJECT_DIR$/All_in_one/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -708,13 +583,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/templates/login.html" />
     <entry file="file://$PROJECT_DIR$/All_in_one/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -722,13 +591,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="254" column="39" selection-start-line="254" selection-start-column="39" selection-end-line="254" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/templates/main.html" />
     <entry file="file://$PROJECT_DIR$/AllinOne/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -792,27 +655,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/All_in_one/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="1708" column="38" selection-start-line="1708" selection-start-column="38" selection-end-line="1708" selection-end-column="38" />
           <folding>
-            <element signature="e#22#31#0" expanded="false" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AllinOne/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1521">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="1697" column="25" selection-start-line="1697" selection-start-column="25" selection-end-line="1697" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

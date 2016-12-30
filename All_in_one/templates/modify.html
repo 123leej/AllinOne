@@ -1,0 +1,85 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block auth %}
+<div>
+  <div class="pathDiv" id="pathDivId" style="float:left; padding-left: 10px;">
+    <nav aria-label="You are here:" role="navigation">
+      <ul class="breadcrumbs">
+        <li><a href="?name=home&location=">Home</a></li>
+        <li><a href="?name={{ name }}&location=">{{ name }}</a></li>
+        {%for loc in path %}
+          <li><a href="?name={{ name }}&location={{ loc.full_path }}">{{ loc.path }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+  <div class="searchDiv" id="searchDivId" style="float: right:">
+    <form action="/search" method="get" style="float: right;">
+      {% csrf_token %}
+      <input type="text" name="search_name" placeholder="search" style="width: 200px; float: left;">
+      <input type="hidden" name="location" value="{{location}}">
+      <input type="hidden" name="name" value={{name}}>
+      <input type="submit" value="search" style="float: left; height: 40px;">
+        <!--  <input onclick="Javascript:OpenWindow();"type="submit" value="search"> -->
+    </form>
+  </div>
+</div>
+<script>
+function check(form){
+    if(true){
+        form.submit();
+    }else{
+        return false;
+    }
+}
+</script>
+<form action="/modify/" method=post onsubmit="return check(form)">
+
+  {% csrf_token%}
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="90">&nbsp;&nbsp;<input type="checkbox"></th>
+        <th width="390">Name</th>
+        <th width="140">Size</th>
+        <th width="220">Modified Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="4">
+          <div class="table-wrap">
+            <table class="table-dalam">
+              <tbody>
+                {% if fileList %}
+                  {% for file in fileList %}
+                  <tr>
+                    <td width="80"><input type="checkbox" class="check" name="fileChecked" value="{{ file.name }}"></td>
+                    <td width="400">
+                      {% if file.type == 'modifying' %}
+                        <input type="hidden" name="target_file" value="{{ file.name }}">
+                        <input type="text" name="modifying" placeholder="Undefined" value="{{file.name}}">
+                        <input type="hidden" name="api_name" value="{{ name }}">
+                        <input type="hidden" name="location" value="{{ location }}">
+                      {% else %}
+                        {% if file.type == 'folder' %}
+                          <img src="{% static 'img/folder.png' %}" style="height: 25px;">&nbsp;<a>{{ file.name }}</a>
+                        {% else %}
+                          <img src="{% static 'img/file.png' %}" style="height: 25px;">&nbsp;<a>{{ file.name }}</a>
+                        {% endif %}
+                      {% endif %}
+                    </td>
+                    <td width="160">{{ file.size }}</td>
+                    <td width="200">{{ file.modified_date }}</td>
+                  </tr>
+                  {% endfor %}
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+{% endblock %}
