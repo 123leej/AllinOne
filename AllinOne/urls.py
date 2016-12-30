@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from All_in_one import views
+import settings
 
 
 urlpatterns = [
@@ -48,4 +49,5 @@ urlpatterns = [
     url(r'^onedrive_auth_start/$', views.onedrive_auth_start, name='onedrive_auth_start'),
 
     url(r'^api_unlink/$', views.api_unlink, name='api_unlink'),
+    url(r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 ]
