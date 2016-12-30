@@ -1,2 +1,1 @@
-web: gunicorn AllinOne.wsgi:application --log-file -
-web: python manage.py runserver 0.0.0.0:5000
+web: python manage.py collectstatic --noinput; python manage.py run_gunicorn -b 0.0.0.0:$5000
