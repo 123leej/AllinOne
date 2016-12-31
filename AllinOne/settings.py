@@ -143,13 +143,18 @@ DROPBOX_SETTINGS = {
 }
 
 GOOGLEDRIVE_SETTINGS = {
-    "client_id":"164066868294-6mvnhbe023t9aeqkv1j038v3vmuolqo6.apps.googleusercontent.com",
-    "project_id":"allinone-cloud",
-    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
-    "token_uri":"https://accounts.google.com/o/oauth2/token",
-    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret":"1fyMojBU97jTTCvP7csMnRa3",
-    "redirect_uris":["https://allinone-project.herokuapp.com/ggdrive_auth_finish"]
+    "client_id": "164066868294-6mvnhbe023t9aeqkv1j038v3vmuolqo6.apps.googleusercontent.com",
+    "project_id": "allinone-cloud",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "1fyMojBU97jTTCvP7csMnRa3",
+    "redirect_uris": "https://allinone-project.herokuapp.com/ggdrive_auth_finish",
+
+    'SCOPES': 'https://www.googleapis.com/auth/drive',
+    'CLIENT_SECRET_FILE': 'All_in_One/client_secret.json',
+    'APPLICATION_NAME': 'AllinOne Cloud',
+    'APPLICATION_KEY': 'AIzaSyD7BOEkBD257EejZYNj03Nz98AFYgYUDJo'
 }
 
 ONEDRIVE_SETTINGS = {
