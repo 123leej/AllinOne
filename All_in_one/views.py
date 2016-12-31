@@ -169,6 +169,7 @@ def add_account(request):
                         api_info.api_name = api_name
                         api_info.save()
                         url = reverse('main') + '?name=' + api_info.api_name + '&location='
+                        del request.session['dropbox-auth-csrf-token']
                         return HttpResponseRedirect(url)
                     else:
                         raise APIInfoAlreadyExist
@@ -1575,7 +1576,7 @@ def dropbox_auth_finish(request):
             )
             api_info.save()
             request.session['aio_user_id'] = aio_user.aio_user_id
-            del request.session['dropbox-auth-csrf-token']
+
             return HttpResponseRedirect(reverse('addaccount'))
         else:
             raise APIInfoAlreadyExist
