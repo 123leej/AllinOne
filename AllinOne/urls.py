@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from All_in_one import views
+from django.conf import settings
 
 
 urlpatterns = [
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root', settings.STATIC_ROOT}),
 
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', views.do_login, name='login'),
