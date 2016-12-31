@@ -149,7 +149,7 @@ GOOGLEDRIVE_SETTINGS = {
     "token_uri": "https://accounts.google.com/o/oauth2/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_secret": "HRjNwv4S5hbwu4LdW99S5xQu",
-    "redirect_uri": "http://localhost:8080/ggdrive_auth_finish",
+    "redirect_uri": "allinone-project.herokuapp.com/ggdrive_auth_finish",
 
     'SCOPES': 'https://www.googleapis.com/auth/drive',
     'CLIENT_SECRET_FILE': 'All_in_One/client_secret.json',
