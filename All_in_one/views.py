@@ -1575,6 +1575,7 @@ def dropbox_auth_finish(request):
             )
             api_info.save()
             request.session['aio_user_id'] = aio_user.aio_user_id
+            del request.session['dropbox-auth-csrf-token']
             return HttpResponseRedirect(reverse('addaccount'))
         else:
             raise APIInfoAlreadyExist
@@ -1598,7 +1599,6 @@ def dropbox_get_auth_flow(request):
 
     redirect_uri = request.build_absolute_uri(reverse('dropbox_auth_finish'))
     _keys = settings.DROPBOX_SETTINGS
-    del request.session['dropbox-auth-csrf-token']
     return DropboxOAuth2Flow(
         _keys['APP_KEY'], _keys['APP_SECRET'], redirect_uri, request.session, 'dropbox-auth-csrf-token')
 
