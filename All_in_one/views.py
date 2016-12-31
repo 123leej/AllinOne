@@ -160,7 +160,8 @@ def add_account(request):
                     api_name='unknown'
                 )
                 api_name = str(request.POST['api_name'])
-
+                del request.session['dropbox-auth-csrf-token']
+                
                 if api_name == '':
                     raise DataNotExist
                 else:
@@ -169,7 +170,6 @@ def add_account(request):
                         api_info.api_name = api_name
                         api_info.save()
                         url = reverse('main') + '?name=' + api_info.api_name + '&location='
-                        del request.session['dropbox-auth-csrf-token']
                         return HttpResponseRedirect(url)
                     else:
                         raise APIInfoAlreadyExist
