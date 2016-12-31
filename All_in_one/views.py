@@ -1563,7 +1563,6 @@ def dropbox_auth_finish(request):
     try:
         access_token, user_id, url_state = dropbox_get_auth_flow(request).finish(request.GET)
 
-        user_id = dropbox.Dropbox(access_token).users_get_current_account().email
         aio_user = AllinOneUser.objects.get(user=request.user)
         api_filter = APIInfo.objects.filter(aio_user_id_id=aio_user.aio_user_id, api_user_id=user_id)
         if api_filter.count() == 0:
