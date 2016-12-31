@@ -1598,8 +1598,7 @@ def dropbox_get_auth_flow(request):
 
     redirect_uri = request.build_absolute_uri(reverse('dropbox_auth_finish'))
     _keys = settings.DROPBOX_SETTINGS
-    for key in request.session.keys():
-        print "key:"+key+"ses:"+request.session[key]
+    del request.session['dropbox-auth-csrf-token']
     return DropboxOAuth2Flow(
         _keys['APP_KEY'], _keys['APP_SECRET'], redirect_uri, request.session, 'dropbox-auth-csrf-token')
 
