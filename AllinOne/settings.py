@@ -126,22 +126,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 STATICFILES_DIRS = [
                   os.path.join(PROJECT_ROOT, "static"),
 ]
 
-STATIC_URL = 'https://allinone-project.herokuapp.com/All_in_one'
+STATIC_URL = '/static/'
 
 STATICFIELS_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-    'compressor.finders.CompressorFinder',
-)
 
 #API keys here
 DROPBOX_SETTINGS = {
