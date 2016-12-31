@@ -42,6 +42,8 @@ import ftplib
 reload(sys)
 sys.setdefaultencoding('utf-8')
 #TODO upload path problem
+#TODO dropbox oauth flow dosen't work when account login session is remain - test in heroku
+#TODO onedrive auth flow
 
 #USER PROCESS###########################################################################################################
 ########################################################################################################################
@@ -1386,7 +1388,6 @@ def detach_file(request):
         if not is_have_temp(target_api_info[i]):
             make_temp_directory(target_api_info[i])
         do_upload(target_api_info[i], _path+detached_file, '/Temp', detached_file)
-        #TODO if there is no Temp folder it raise error only google
 
         metadata = DetachedFileMetaData(
             aio_user_id_id=aio_user.aio_user_id,
@@ -1778,7 +1779,7 @@ def onedrive_auth_start(request):
                 aio_user_id_id=aio_user.aio_user_id,
                 api_name='unknown',
                 api_type='onedrive',
-                api_user_id=user_id,            # TODO this value must be unique
+                api_user_id=user_id,
                 api_user_access_token=_keys['APP_KEY']
             )
             api_info.save()
