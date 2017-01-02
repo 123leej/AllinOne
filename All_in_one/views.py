@@ -1659,6 +1659,7 @@ def ggdrive_get_auth_flow(request):
         client_secret=settings.GOOGLEDRIVE_SETTINGS['client_secret'],
         scope=settings.GOOGLEDRIVE_SETTINGS['SCOPES'],
         redirect_uri=request.build_absolute_uri(reverse('ggdrive_auth_finish')))
+    print request.build_absolute_uri(reverse('ggdrive_auth_finish'))
     return flow
 
 
