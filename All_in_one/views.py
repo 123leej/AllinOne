@@ -1741,7 +1741,6 @@ def read_credentials(fname, api_info):
             json_data = json.loads(str_data)
             if json_data['serial']['api_user_id'] == api_info.api_user_id and json_data['serial']['aio_user_id'] == api_info.aio_user_id_id:
                 credentials = Credentials.new_from_json(json.dumps(json_data['credential']))
-                print 'ok'
         f.close()
     else:
         credentials = None
