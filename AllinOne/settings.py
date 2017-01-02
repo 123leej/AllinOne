@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$a&otk7_h7pn14!_wqb@ae7t$l2+89=w0mmhykd&fe=j^##b&$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -144,13 +144,13 @@ DROPBOX_SETTINGS = {
 }
 
 GOOGLEDRIVE_SETTINGS = {
-    "client_id": "1031347366738-5jmcmflqk932dtpf4biq1sg6kqbfhoen.apps.googleusercontent.com",
+    "client_id": "1031347366738-5acih4stjqme8pnmoieg9kp2h7qpv6a5.apps.googleusercontent.com",
     "project_id": "delta-spark-147411",
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
     "token_uri": "https://accounts.google.com/o/oauth2/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "g7k3_dhar1AhJxLEaoom6tbp",
-    "redirect_uris": ["http://localhost:8000/ggdrive_auth_finish/", "https://allinone-project.herokuapp.com/ggdrive_auth_finish/"],
+    "client_secret": "HRjNwv4S5hbwu4LdW99S5xQu",
+    "redirect_uri": ["http://localhost:8080/ggdrive_auth_finish", "https://allinone-project.herokuapp.com/ggdrive_auth_finish"],
 
     'SCOPES': 'https://www.googleapis.com/auth/drive',
     'CLIENT_SECRET_FILE': 'All_in_One/client_secret.json',
