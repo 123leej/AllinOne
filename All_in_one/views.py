@@ -18,6 +18,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from models import AllinOneUser, APIInfo, DetachedFileMetaData
+from django.core.files.storage import FileSystemStorage
 
 from my_exception import DataNotExist, APIInfoAlreadyExist, FtpNotExist
 from my_class import Path, Usage, File
@@ -41,9 +42,9 @@ import ftplib
 #make possible to hangle
 reload(sys)
 sys.setdefaultencoding('utf-8')
-#TODO upload path problem
-#TODO dropbox oauth flow dosen't work when account login session is remain - test in heroku
-#TODO onedrive auth flow
+#TODO dropbox,onedrive oauth flow dosen't work when account login
+
+#TODO ggdrive dosen't work
 
 #USER PROCESS###########################################################################################################
 ########################################################################################################################
@@ -295,7 +296,7 @@ def main(request):
                         )
 
             if api_info.api_type == 'onedrive':
-                client = onedrive_get_auth_flow(api_info)
+                client = onedrive_get_client(api_info)
 
                 if location == '':
                     location = '/'
@@ -512,7 +513,7 @@ def modify(request):
                         )
 
             if api_info.api_type == 'onedrive':
-                client = onedrive_get_auth_flow(api_info)
+                client = onedrive_get_client(api_info)
 
                 if location == '':
                     location = '/'
@@ -707,7 +708,7 @@ def file_rename(request, _file, location, api_name, new_file_name):
 
 
         if api_info.api_type == 'onedrive':
-            client = onedrive_get_auth_flow(api_info)
+            client = onedrive_get_client(api_info)
 
             if location == '':
                 root_folder = client.item(drive='me', id='root').children.get()
@@ -774,7 +775,7 @@ def new_folder(request, location, api_name):
 
 
         if api_info.api_type == 'onedrive':
-            client = onedrive_get_auth_flow(api_info)
+            client = onedrive_get_client(api_info)
 
             _folder = onedrivesdk.Folder()
             _item = onedrivesdk.Item()
@@ -874,7 +875,7 @@ def search_file(request):
                     pass
 
         if api_info.api_type == 'onedrive':
-            client = onedrive_get_auth_flow(api_info)
+            client = onedrive_get_client(api_info)
             search_result = client.item(drive="me", path="/").search(search_name).get()
             idx = 0
             for i in range(0, len(search_result)):
@@ -937,32 +938,34 @@ def file_upload(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('login'))
     else:
-        api_name = str(request.GET['name'])
-        location = str(request.GET['location'])
+        if request.method == 'POST':
+            temp_file = request.FILES['myfile']
+            file_storage = FileSystemStorage()
+            uploaded_file = file_storage.save('files/'+temp_file.name, temp_file)
 
-        #origin
-        #file_entry = str(request.GET['filepath'])
-        file_entry = '/Users/'+getpass.getuser()+'/Desktop/TestFolder/'+str(request.GET['filepath'])
+            api_name = str(request.POST['name'])
+            location = str(request.POST['location'])
 
-        #origin
-        #filecut = str(file_entry).split('\\')
-        filecut = str(file_entry).split('/')
 
-        aio_user = AllinOneUser.objects.get(user=request.user)
-        api_info = APIInfo.objects.get(
-            aio_user_id_id=aio_user.aio_user_id,
-            api_name=api_name
-        )
+            aio_user = AllinOneUser.objects.get(user=request.user)
+            api_info = APIInfo.objects.get(
+                aio_user_id_id=aio_user.aio_user_id,
+                api_name=api_name
+            )
 
-        do_upload(api_info, file_entry, location, filecut[len(filecut)-1])
+            do_upload(api_info, file_storage.url(uploaded_file), location, temp_file.name)
 
-        url = reverse('main') + '?name=' + api_info.api_name + '&location=' + location
+            url = reverse('main') + '?name=' + api_info.api_name + '&location=' + location
+            file_storage.delete(file_storage.url(uploaded_file))
 
-        return HttpResponseRedirect(url)
+            return HttpResponseRedirect(url)
+
+        return HttpResponseForbidden
 
 
 
 def do_upload(api_info, file_path, location, file_name):
+    os.chdir(settings.BASE_DIR)
     if api_info.api_type == 'dropbox':
         dbx = dropbox.Dropbox(api_info.api_user_access_token)
         with open(file_path, 'rb') as _file:
@@ -991,7 +994,7 @@ def do_upload(api_info, file_path, location, file_name):
             drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
 
     if api_info.api_type == 'onedrive':
-        client = onedrive_get_auth_flow(api_info)
+        client = onedrive_get_client(api_info)
         if location == '':
             location = '/'
 
@@ -1013,7 +1016,6 @@ def do_upload(api_info, file_path, location, file_name):
         ftp.close()
 
     return 0
-
 
 
 def file_download(request, entry, location, name):
@@ -1058,7 +1060,7 @@ def file_download(request, entry, location, name):
                     _file.write(fh.getvalue())
 
         if api_info.api_type == 'onedrive':
-            client = onedrive_get_auth_flow(api_info)
+            client = onedrive_get_client(api_info)
 
             if location == '':
                 root_folder = client.item(drive='me', id='root').children.get()
@@ -1117,7 +1119,7 @@ def file_delete(request, entry, location, name):
                 drive_service.files().delete(fileId=target_id).execute()
 
         if api_info.api_type == 'onedrive':
-            client = onedrive_get_auth_flow(api_info)
+            client = onedrive_get_client(api_info)
 
             if location == '':
                 location = '/'
@@ -1198,7 +1200,7 @@ def get_user_api_info(api_list):
 
         if api.api_type == 'onedrive':
 
-            client = onedrive_get_auth_flow(api)
+            client = onedrive_get_client(api)
 
             used_info_list.append(
                 Usage(
@@ -1351,70 +1353,72 @@ def ggdrive_show_files(directory, files):
 
 @csrf_exempt
 def detach_file(request):
+    if request.method == 'POST':
+        temp_file = request.FILES['myfile']
+        file_storage = FileSystemStorage()
+        uploaded_file = file_storage.save('files/' + temp_file.name, temp_file)
 
-    # test folder for exhibition
-    file_location = '/Users/'+getpass.getuser()+'/Desktop/TestFolder/' + str(request.GET['filepath'])
-    api_name = str(request.GET['name'])
-    location = str(request.GET['location'])
-    target_api = request.GET.getlist('target_api')
+        api_name = str(request.POST['name'])
+        location = str(request.POST['location'])
+        target_api = request.POST.getlist('target_api')
 
-    target_api_info = []
-    temp = file_location.split('/')
+        target_api_info = []
+        loc = file_storage.url(uploaded_file)
+        _path = loc[:(len(loc)-len(temp_file.name))]
+        os.chdir(_path)
 
-    _file = temp[len(temp)-1]
-    _path = file_location[:(len(file_location)-len(_file))]
-    os.chdir(_path)
-
-    #split!
-    file_id = str(uuid.uuid4())
-    subprocess.Popen(["split -b 2000000 " + _file + " "+file_id+"-"], stdout=subprocess.PIPE, shell=True)
-    temp = file_id+'*'
-    time.sleep(1)   # subprocess run in asynchronously
-    detached_files = fnmatch.filter(os.listdir('.'), temp)
+        #split!
+        file_id = str(uuid.uuid4())
+        subprocess.Popen(["split -b 2000000 " + temp_file.name + " "+file_id+"-"], stdout=subprocess.PIPE, shell=True)
+        temp = file_id+'*'
+        time.sleep(1)   # subprocess run in asynchronously
+        detached_files = fnmatch.filter(os.listdir('.'), temp)
 
 
-    aio_user = AllinOneUser.objects.get(user=request.user)
-    for i in range(0, len(target_api)):
-        target_api_info.append(
-            APIInfo.objects.get(
-                aio_user_id_id=aio_user.aio_user_id,
-                api_name=str(target_api[i])
+        aio_user = AllinOneUser.objects.get(user=request.user)
+        for i in range(0, len(target_api)):
+            target_api_info.append(
+                APIInfo.objects.get(
+                    aio_user_id_id=aio_user.aio_user_id,
+                    api_name=str(target_api[i])
+                )
             )
-        )
 
-    #save metadata
-    i = 0
-    for detached_file in detached_files:
-        if not is_have_temp(target_api_info[i]):
-            make_temp_directory(target_api_info[i])
-        do_upload(target_api_info[i], _path+detached_file, '/Temp', detached_file)
+        #save metadata
+        i = 0
+        for detached_file in detached_files:
+            if not is_have_temp(target_api_info[i]):
+                make_temp_directory(target_api_info[i])
+            do_upload(target_api_info[i], _path+detached_file, '/Temp', detached_file)
 
-        metadata = DetachedFileMetaData(
+            metadata = DetachedFileMetaData(
+                aio_user_id_id=aio_user.aio_user_id,
+                origin_file=temp_file.name,
+                origin_API=api_name,
+                file_name=detached_file,
+                file_id=file_id,
+                stored_API=str(target_api[i])
+            )
+            metadata.save()
+
+            i += 1
+            if i == len(target_api):
+                i = 0
+        api_info = APIInfo.objects.get(
             aio_user_id_id=aio_user.aio_user_id,
-            origin_file=_file,
-            origin_API=api_name,
-            file_name=detached_file,
-            file_id=file_id,
-            stored_API=str(target_api[i])
+            api_name=api_name
         )
-        metadata.save()
+        with open(_path+'/'+temp_file.name+'.metadata', 'wb'):
+            do_upload(api_info, _path+temp_file.name+'.metadata', location, temp_file.name+'.metadata')
 
-        i += 1
-        if i == len(target_api):
-            i = 0
-    api_info = APIInfo.objects.get(
-        aio_user_id_id=aio_user.aio_user_id,
-        api_name=api_name
-    )
-    with open(_path+'/'+_file+'.metadata', 'wb'):
-        do_upload(api_info, _path+_file+'.metadata', location, _file+'.metadata')
+        os.chdir(_path)
+        delete_detached_file(file_id)
+        file_storage.delete(file_storage.url(uploaded_file))
 
-    delete_detached_file(file_id)
+        url = reverse('main')+'?name='+api_name+'&location='+location
 
-    url = reverse('main')+'?name='+api_name+'&location='+location
-
-    return HttpResponseRedirect(url)
-
+        return HttpResponseRedirect(url)
+    return HttpResponseForbidden
 
 def is_have_temp(api_info):
     if api_info.api_type == 'dropbox':
@@ -1440,7 +1444,7 @@ def is_have_temp(api_info):
         return False
 
     if api_info.api_type == 'onedrive':
-        client = onedrive_get_auth_flow(api_info)
+        client = onedrive_get_client(api_info)
 
         temp_file_list = client.item(drive='me', path='/').children.get()
 
@@ -1480,7 +1484,7 @@ def make_temp_directory(api_info):
         drive_service.files().create(body=file_metadata, fields='id').execute()
 
     if api_info.api_type == 'onedrive':
-        client = onedrive_get_auth_flow(api_info)
+        client = onedrive_get_client(api_info)
 
         _folder = onedrivesdk.Folder()
         _item = onedrivesdk.Item()
@@ -1659,7 +1663,6 @@ def ggdrive_get_auth_flow(request):
         client_secret=settings.GOOGLEDRIVE_SETTINGS['client_secret'],
         scope=settings.GOOGLEDRIVE_SETTINGS['SCOPES'],
         redirect_uri=request.build_absolute_uri(reverse('ggdrive_auth_finish')))
-    print request.build_absolute_uri(reverse('ggdrive_auth_finish'))
     return flow
 
 
@@ -1756,21 +1759,31 @@ def write_credentials(fname, credentials, serial):
 
 
 def onedrive_auth_start(request):
+    redirect_uri = request.build_absolute_uri(reverse('onedrive_auth_finish'))
+    return HttpResponseRedirect(onedrive_get_auth_flow(request).auth_provider.get_auth_url(redirect_uri))
+
+
+def onedrive_get_auth_flow(request):
+    client = onedrivesdk.get_default_client(
+        client_id=settings.ONEDRIVE_SETTINGS['APP_KEY'],
+        scopes=settings.ONEDRIVE_SETTINGS['SCOPES'])
+    return client
+
+
+def onedrive_auth_finish(request):
     try:
+        code = request.GET.get('code')
         http_provider = onedrivesdk.HttpProvider()
-        redirect_uri = 'http://localhost:8080/'
-        _keys = settings.ONEDRIVE_SETTINGS
-        scopes = ['wl.signin', 'wl.offline_access', 'onedrive.readwrite']
-        client = onedrivesdk.get_default_client(_keys['APP_KEY'], scopes=scopes)
-
-        auth_url = client.auth_provider.get_auth_url(redirect_uri)
-        code = GetAuthCodeServer.get_auth_code(auth_url, redirect_uri)
-
-        auth_provider = onedrivesdk.AuthProvider(http_provider, _keys['APP_KEY'], scopes=scopes)
-        auth_provider.authenticate(code, redirect_uri, _keys['APP_SECRET'])
+        redirect_uri = request.build_absolute_uri(reverse('onedrive_auth_finish'))
+        auth_provider = onedrivesdk.AuthProvider(
+            http_provider=http_provider,
+            client_id=settings.ONEDRIVE_SETTINGS['APP_KEY'],
+            scopes=settings.ONEDRIVE_SETTINGS['SCOPES']
+        )
+        auth_provider.authenticate(code, redirect_uri, settings.ONEDRIVE_SETTINGS['APP_SECRET'])
         auth_provider.save_session()
 
-#        user_id = client.drives["me"].get().owner.user.id
+        user_id = 'testssss'
 
         aio_user = AllinOneUser.objects.get(user=request.user)
         api_filter = APIInfo.objects.filter(aio_user_id_id=aio_user.aio_user_id, api_user_id=user_id)
@@ -1780,7 +1793,7 @@ def onedrive_auth_start(request):
                 api_name='unknown',
                 api_type='onedrive',
                 api_user_id=user_id,
-                api_user_access_token=_keys['APP_KEY']
+                api_user_access_token=settings.ONEDRIVE_SETTINGS['APP_KEY']
             )
             api_info.save()
             request.session['aio_user_id'] = aio_user.aio_user_id
@@ -1794,11 +1807,10 @@ def onedrive_auth_start(request):
 
 
 
-def onedrive_get_auth_flow(api_info):
+def onedrive_get_client(api_info):
     base_url = 'https://api.onedrive.com/v1.0/'
     http_provider = onedrivesdk.HttpProvider()
-    scopes = ['wl.signin', 'wl.offline_access', 'onedrive.readwrite']
-    auth_provider = onedrivesdk.AuthProvider(http_provider, api_info.api_user_access_token, scopes=scopes)
+    auth_provider = onedrivesdk.AuthProvider(http_provider, api_info.api_user_access_token, scopes=settings.ONEDRIVE_SETTINGS['SCOPES'])
     auth_provider.load_session()
     auth_provider.refresh_token()
     client = onedrivesdk.OneDriveClient(base_url, auth_provider, http_provider)

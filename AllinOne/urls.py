@@ -47,6 +47,7 @@ urlpatterns = [
     url(r'^ggdrive_auth_finish/$', views.ggdrive_auth_finish, name='ggdrive_auth_finish'),
 
     url(r'^onedrive_auth_start/$', views.onedrive_auth_start, name='onedrive_auth_start'),
+    url(r'^onedrive_auth_finish/$', views.onedrive_auth_finish, name='onedrive_auth_finish'),
 
     url(r'^api_unlink/$', views.api_unlink, name='api_unlink'),
     

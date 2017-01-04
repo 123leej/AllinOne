@@ -272,9 +272,9 @@
               </table>
             </form>
             <div class="uploadDiv" id="uploadDivId" style="width:500px; float:left;">
-              <form action='/upload' method="get" enctype="multipart/form-data">
+              <form action='/upload/' method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="file" name="filepath" id="filepath" style="width: 200px; float:left;">
+                <input type="file" name="myfile" style="width: 200px; float:left;">
                 <input type="hidden" name="location" value="{{location}}">
                 <input type="hidden" name="name" value="{{name}}">
                 <input type="submit" name="upload" value="UPLOAD" style="float: left;">
@@ -282,7 +282,7 @@
             </div>
             <p><a class="preview_start" data-open="uploadModal">file detach upload</a></p>
             <div class="reveal" id="uploadModal" data-reveal>
-              <form action="/detach_upload">
+              <form action="/detach_upload/" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for account in accountList %}
                 <div style="width: 300px;">
@@ -292,7 +292,7 @@
                 </div>
                 <br/>
                 {% endfor %}
-                <input type="file" name="filepath" style="width: 200px; float:left;">
+                <input type="file" name="myfile" style="width: 200px; float:left;">
                 <input type="hidden" name="location" value="{{location}}">
                 <input type="hidden" name="name" value="{{name}}">
                 <input type="submit" name="upload" value="UPLOAD" style="float: left;">
