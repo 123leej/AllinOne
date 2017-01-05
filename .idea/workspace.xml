@@ -22,8 +22,8 @@
             <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/All_in_one/views.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="454">
-                    <caret line="1680" column="26" selection-start-line="1680" selection-start-column="26" selection-end-line="1680" selection-end-column="26" />
+                  <state relative-caret-position="372">
+                    <caret line="1665" column="23" selection-start-line="1665" selection-start-column="23" selection-end-line="1665" selection-end-column="23" />
                     <folding>
                       <element signature="e#0#9#0" expanded="true" />
                     </folding>
@@ -42,11 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/All_in_one/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="142" column="82" selection-start-line="142" selection-start-column="82" selection-end-line="142" selection-end-column="110" />
+            <state relative-caret-position="234">
+              <caret line="1660" column="23" selection-start-line="1660" selection-start-column="23" selection-end-line="1660" selection-end-column="23" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -78,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AllinOne/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
+            <state relative-caret-position="296">
               <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
               <folding />
             </state>
@@ -135,8 +135,8 @@
         <option value="$PROJECT_DIR$/All_in_one/client_secret.json" />
         <option value="$PROJECT_DIR$/All_in_one/templates/main.html" />
         <option value="$PROJECT_DIR$/AllinOne/urls.py" />
-        <option value="$PROJECT_DIR$/All_in_one/views.py" />
         <option value="$PROJECT_DIR$/AllinOne/settings.py" />
+        <option value="$PROJECT_DIR$/All_in_one/views.py" />
       </list>
     </option>
   </component>
@@ -189,7 +189,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -243,6 +242,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -678,10 +678,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/All_in_one/client_secret.json">
+    <entry file="file://$PROJECT_DIR$/All_in_one/client_secret.json" />
+    <entry file="file://$PROJECT_DIR$/AllinOne/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="591" />
+        <state relative-caret-position="296">
+          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -708,19 +709,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/All_in_one/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="142" column="82" selection-start-line="142" selection-start-column="82" selection-end-line="142" selection-end-column="110" />
+        <state relative-caret-position="234">
+          <caret line="1660" column="23" selection-start-line="1660" selection-start-column="23" selection-end-line="1660" selection-end-column="23" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AllinOne/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
