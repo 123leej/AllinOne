@@ -144,18 +144,9 @@ DROPBOX_SETTINGS = {
 }
 
 GOOGLEDRIVE_SETTINGS = {
-    "client_id": "1031347366738-5jmcmflqk932dtpf4biq1sg6kqbfhoen.apps.googleusercontent.com",
-    "project_id": "delta-spark-147411",
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://accounts.google.com/o/oauth2/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "g7k3_dhar1AhJxLEaoom6tbp",
-    "redirect_uris": ["http://localhost:8000/ggdrive_auth_finish/", "https://allinone-project.herokuapp.com/ggdrive_auth_finish/"],
-
+    "client_id": "1037998726470-rikqblo9or888j72fkc46aoe8vue9dpc.apps.googleusercontent.com",
+    "client_secret": "_5MkSRBVckHJAruJBuc2-Ykt",
     'SCOPES': 'https://www.googleapis.com/auth/drive',
-    'CLIENT_SECRET_FILE': 'All_in_One/client_secret.json',
-    'APPLICATION_NAME': 'Drive API Python Quickstart',
-    'APPLICATION_KEY': 'AIzaSyA3TVhv1C2Am-_rpHV2rLgHrGhThcUQN14'
 }
 
 ONEDRIVE_SETTINGS = {

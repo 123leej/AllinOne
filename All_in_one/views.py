@@ -140,7 +140,7 @@ def add_account(request):
     if request.method == 'GET':
         aio_user = AllinOneUser.objects.get(user=request.user)
         try:
-            api_list = APIInfo.objects.filter(aio_user_id_id=aio_user.aio_user_id)
+            api_list = APIInfo.objects.filter(aio_user_id_id=aio_user.aio_user_id).exclude(api_name='unknown')
             account_list, total_usage, none_of_data = get_user_api_info(api_list)
         except APIInfo.DoesNotExist:
             account_list = None
@@ -1678,8 +1678,7 @@ def ggdrive_auth_finish(request):
         drive_service = discovery.build(
             'drive',
             'v3',
-            http=http_auth,
-            developerKey=settings.GOOGLEDRIVE_SETTINGS['APPLICATION_KEY'],
+            http=http_auth
         )
         user = drive_service.about().get(fields='user').execute()
         aio_user = AllinOneUser.objects.get(user=request.user)
@@ -1730,8 +1729,7 @@ def ggdrive_get_drive_service(api_info):
     drive_service = discovery.build(
         'drive',
         'v3',
-        http=http_auth,
-        developerKey=settings.GOOGLEDRIVE_SETTINGS['APPLICATION_KEY'],
+        http=http_auth
     )
     return drive_service
 
