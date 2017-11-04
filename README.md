@@ -32,15 +32,15 @@ Dropbox, Google Drive와 같은 여러 Cloud Service 계정 및 FTP서버 등을
  
 ## Setting Virtual Environment
 
-### Install new packages in virtual environment
-virtual environment activation
+### Install packages in virtual environment
+virtual environment activation (you must make your own virtual environments not mine)
 ```sh
 . venv/bin/activate
 ```
 
-(venv) has appear in front of command line
+(venv) has appear in front of command line and install require packages.
 ```sh
-(venv)username@desktop$ pip install <package-name>
+(venv)username@desktop$ pip install -r requirements.txt
 ```
 
 ### Developing with IDE
