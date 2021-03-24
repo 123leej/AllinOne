@@ -19,7 +19,7 @@ pycparser==2.16
 pysftp==0.2.9
 psycopg2==2.4.5
 requests==2.11.1
-rsa==3.4.2
+rsa==4.1
 six==1.10.0
 static3==0.7.0
 typing==3.5.2.2
